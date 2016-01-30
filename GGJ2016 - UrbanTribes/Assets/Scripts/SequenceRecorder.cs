@@ -111,9 +111,6 @@ namespace Assets.Scripts
                 
             }
             
-
-            DisplayText.text = KeySequenseToString();
-        
         }
 
         private void ProcessPlayer1Input()
