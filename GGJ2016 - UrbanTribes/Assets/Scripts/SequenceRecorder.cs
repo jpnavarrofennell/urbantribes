@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -12,8 +10,7 @@ namespace Assets.Scripts
         public List<SequenceItem> CurrentKeySequence;
         public List<SequenceItem> OldKeySequence;
         
-        public Text DisplayText;
-        public int MaxSequenceSize;
+       public int MaxSequenceSize;
         public float CoolDownInSeconds = 0.2f;
 
 
@@ -324,19 +321,6 @@ namespace Assets.Scripts
             CurrentKeySequence.Clear();
             MaxSequenceSize = 10;
         }
-
-
-        private string KeySequenseToString()
-        {
-            var sequence = "";
-            foreach (var key in CurrentKeySequence)
-            {
-                sequence += key.KeyPressed.ToString() + " - " + key.TimePressed + "\n";
-            }
-
-            return sequence;
-        }
-
 
         public bool CompareSequence(List<SequenceItem> baseSequence, List<SequenceItem> resultSequence)
         {
