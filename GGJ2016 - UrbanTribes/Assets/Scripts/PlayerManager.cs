@@ -25,13 +25,7 @@ public class PlayerManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetKeyDown("w")) {}
 
-		if(Input.GetKeyDown("a")) {}
-
-		if(Input.GetKeyDown("s")) {}
-
-		if(Input.GetKeyDown("d")) {}
 
 	    if (Input.GetKeyUp(KeyCode.Joystick1Button7))
 	    {

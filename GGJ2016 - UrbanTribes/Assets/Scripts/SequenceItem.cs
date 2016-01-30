@@ -13,24 +13,42 @@ namespace Assets.Scripts
             TimePressed = timePressed;
         }
 
-        public static InputItem KeyToInputItem(KeyCode key)
+
+        public static InputItem GetPlayer2Input(KeyCode key)
+        {
+            switch (key)
+            {
+                case KeyCode.Joystick3Button2:
+                    return InputItem.X;
+                case KeyCode.Joystick3Button0:
+                    return InputItem.A;
+                case KeyCode.Joystick3Button3:
+                    return InputItem.Y;
+                case KeyCode.Joystick3Button1:
+                    return InputItem.B;
+            }
+            return InputItem.None;
+        }
+
+        public static InputItem GetPlayer1Input(KeyCode key)
         {
             switch (key)
             {
                 case KeyCode.A:
-                case KeyCode.Joystick1Button2:
+                case KeyCode.Joystick4Button2:
+                
                     return InputItem.X;
 
                 case KeyCode.S:
-                case KeyCode.Joystick1Button0:
+                case KeyCode.Joystick4Button0:
                     return InputItem.A;
 
                 case KeyCode.W:
-                case KeyCode.Joystick1Button3:
+                case KeyCode.Joystick4Button3:
                     return InputItem.Y;
 
                 case KeyCode.D:
-                case KeyCode.Joystick1Button1:
+                case KeyCode.Joystick4Button1:
                     return InputItem.B;
 
                 case KeyCode.UpArrow:
@@ -42,11 +60,9 @@ namespace Assets.Scripts
                     return InputItem.Left;
                 case KeyCode.RightArrow:
                     return InputItem.Right;
-
             }
             return InputItem.None;
         }
-
     }
 
 

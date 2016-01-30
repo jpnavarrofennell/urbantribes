@@ -28,18 +28,16 @@ namespace Assets.Scripts
         private PlayerManager player2;
 
 
-        private static KeyCode[] validKeys =
+        private static KeyCode[] validKeysP1 =
         {
 
             //Gamepad Buttons
-            KeyCode.Joystick1Button0,
-            KeyCode.Joystick1Button1,
-            KeyCode.Joystick1Button2,
-            KeyCode.Joystick1Button3,
-            KeyCode.Joystick1Button4,
-            KeyCode.Joystick1Button5,
-           
-
+            KeyCode.Joystick4Button0,
+            KeyCode.Joystick4Button1,
+            KeyCode.Joystick4Button2,
+            KeyCode.Joystick4Button3,
+            KeyCode.Joystick4Button4,
+            KeyCode.Joystick4Button5,
 
             //Keyboard
             KeyCode.A,
@@ -52,6 +50,19 @@ namespace Assets.Scripts
             KeyCode.RightArrow,
              
 
+
+        };
+
+        private static KeyCode[] validKeysP2 =
+        {
+
+            //Gamepad Buttons
+            KeyCode.Joystick3Button0,
+            KeyCode.Joystick3Button1,
+            KeyCode.Joystick3Button2,
+            KeyCode.Joystick3Button3,
+            KeyCode.Joystick3Button4,
+            KeyCode.Joystick3Button5,
 
         };
 	
@@ -84,8 +95,10 @@ namespace Assets.Scripts
 
             if (CurrentKeySequence.Count >= MaxSequenceSize) return;
 
-
-            ProcessInput();
+            if(player1.isActive)
+                ProcessPlayer1Input();
+            else
+                ProcessPlayer2Input();
             
             if (IsImitating)
             {
@@ -102,13 +115,13 @@ namespace Assets.Scripts
         
         }
 
-        private void ProcessInput()
+        private void ProcessPlayer1Input()
         {
-            foreach (var key in validKeys)
+            foreach (var key in validKeysP1)
             {
                 if (Input.GetKeyUp(key))
                 {
-                    AddSequenceItem(SequenceItem.KeyToInputItem(key));
+                    AddSequenceItem(SequenceItem.GetPlayer1Input(key));
                     return;
                 }
             }
@@ -155,6 +168,59 @@ namespace Assets.Scripts
                 ChangeDancer(CurrentKeySequence.Last().KeyPressed);
         }
 
+        private void ProcessPlayer2Input()
+        {
+            foreach (var key in validKeysP2)
+            {
+                if (Input.GetKeyUp(key))
+                {
+                    AddSequenceItem(SequenceItem.GetPlayer2Input(key));
+                    return;
+                }
+            }
+
+            if (Input.GetAxis("DPad X2") < 0.1 && 
+                Input.GetAxis("DPad X2") > -0.1 && 
+                Input.GetAxis("DPad Y2") < 0.1 &&
+                Input.GetAxis("DPad Y2") > -0.1)
+                isPressingKey = false;
+
+
+            if (isPressingKey)  return; 
+
+            if (Input.GetAxis("DPad X2") > 0.8)
+            {
+                
+                AddSequenceItem(InputItem.Right);
+                isPressingKey = true;
+                return;
+            }
+
+            if (Input.GetAxis("DPad X2") < -0.8)
+            {
+                isPressingKey = true;
+                AddSequenceItem(InputItem.Left);
+                return;
+            }
+
+            if (Input.GetAxis("DPad Y2") > 0.8)
+            {
+                isPressingKey = true;
+                AddSequenceItem(InputItem.Up);
+                return;
+            }
+
+            if (Input.GetAxis("DPad Y2") < -0.8)
+            {
+                isPressingKey = true;
+                AddSequenceItem(InputItem.Down);
+                return;
+            }
+
+            if(CurrentKeySequence.Count> 0)
+                ChangeDancer(CurrentKeySequence.Last().KeyPressed);
+        }
+
         private void AddSequenceItem(InputItem inputItem)
         {
             
@@ -183,18 +249,46 @@ namespace Assets.Scripts
                         player2.SetSprite(1);
                     break;
                 case InputItem.Down:
+                    if (player1.isActive)
+                        player1.SetSprite(2);
+                    else
+                        player2.SetSprite(2);
                     break;
                 case InputItem.Left:
+                    if (player1.isActive)
+                        player1.SetSprite(3);
+                    else
+                        player2.SetSprite(3);
                     break;
                 case InputItem.Right:
+                    if (player1.isActive)
+                        player1.SetSprite(4);
+                    else
+                        player2.SetSprite(4);
                     break;
                 case InputItem.A:
+                    if (player1.isActive)
+                        player1.SetSprite(5);
+                    else
+                        player2.SetSprite(5);
                     break;
                 case InputItem.B:
+                    if (player1.isActive)
+                        player1.SetSprite(6);
+                    else
+                        player2.SetSprite(6);
                     break;
                 case InputItem.X:
+                    if (player1.isActive)
+                        player1.SetSprite(7);
+                    else
+                        player2.SetSprite(7);
                     break;
                 case InputItem.Y:
+                    if (player1.isActive)
+                        player1.SetSprite(8);
+                    else
+                        player2.SetSprite(8);
                     break;
 
             }

@@ -17,18 +17,32 @@ public class GameControl : MonoBehaviour
 	void Start ()
 	{
 	    ActivePlayerNumber = 1;
+	    Player1.isActive = true;
 	    sequenceRecorder = GetComponent<SequenceRecorder>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
-	}
+	void Update ()
+    {
+        if (Input.GetKeyUp(KeyCode.F5))
+        {
+            SwitchPlayer();
+            Debug.Log("SwitchPlayer>> "  + ActivePlayerNumber);
+        }
+        if (Input.GetKeyUp(KeyCode.Joystick1Button6))
+        {
+            Debug.Log("Start/Stop Recording");
+            StartStopRecording();
+        }
+    }
 
 
     public void SwitchPlayer()
     {
         ActivePlayerNumber = ActivePlayerNumber == 1 ? 2 : 1;
+
+        Player1.isActive = (ActivePlayerNumber == 1);
+        Player2.isActive = (ActivePlayerNumber == 2);
     }
 
     public void StartStopRecording()
