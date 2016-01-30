@@ -27,16 +27,7 @@ public class PlayerManager : MonoBehaviour {
 	void Update () {
 
 
-	    if (Input.GetKeyUp(KeyCode.Joystick1Button7))
-	    {
-	        GameControl.SwitchPlayer();
-            Debug.Log("SwitchPlayer");
-	    }
-	    if (Input.GetKeyUp(KeyCode.Joystick1Button6))
-	    {
-            Debug.Log("Start/Stop Recording");
-	        GameControl.StartStopRecording();
-	    }
+
 
 
 	}

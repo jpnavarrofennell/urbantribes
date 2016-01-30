@@ -13,7 +13,7 @@ namespace Assets.Scripts
         public List<SequenceItem> OldKeySequence;
         
         public Text DisplayText;
-        public int MaxSequenceSize = 10;
+        public int MaxSequenceSize;
         public float CoolDownInSeconds = 0.2f;
 
 
@@ -73,7 +73,7 @@ namespace Assets.Scripts
             IsRecording = false;
             isPressingKey = false;
             startedRecodingTime = 0;
-            MaxSequenceSize = 10;
+            
 
             var gameControl = GetComponentInParent<GameControl>();
 
@@ -82,6 +82,7 @@ namespace Assets.Scripts
                 Debug.LogError("Invalid GameControl Set");
                 return;
             }
+
 
             player1 = gameControl.Player1;
             player2 = gameControl.Player2;
@@ -121,6 +122,7 @@ namespace Assets.Scripts
             {
                 if (Input.GetKeyUp(key))
                 {
+                    
                     AddSequenceItem(SequenceItem.GetPlayer1Input(key));
                     return;
                 }
