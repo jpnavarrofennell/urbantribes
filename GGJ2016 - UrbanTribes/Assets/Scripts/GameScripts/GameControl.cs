@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
-public class MoveBox : MonoBehaviour {
+public class GameControl : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,4 +13,6 @@ public class MoveBox : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
 }
