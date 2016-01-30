@@ -31,7 +31,7 @@ public class GameControl : MonoBehaviour
             SwitchPlayer();
             Debug.Log("SwitchPlayer>> "  + ActivePlayerNumber);
         }
-        if (Input.GetKeyUp(KeyCode.Joystick1Button6))
+        if (Input.GetKeyUp(KeyCode.JoystickButton6))
         {
             Debug.Log("Start/Stop Recording");
             StartStopRecording();

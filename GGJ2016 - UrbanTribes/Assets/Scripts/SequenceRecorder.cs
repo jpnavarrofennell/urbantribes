@@ -9,8 +9,8 @@ namespace Assets.Scripts
 
         public List<SequenceItem> CurrentKeySequence;
         public List<SequenceItem> OldKeySequence;
-        
-       public int MaxSequenceSize;
+
+        public int MaxSequenceSize;
         public float CoolDownInSeconds = 0.2f;
 
 
@@ -24,19 +24,19 @@ namespace Assets.Scripts
         private PlayerManager player1;
         private PlayerManager player2;
 
-		public GameControl gmcontrl;
+        public GameControl gmcontrl;
 
 
-        private static KeyCode[] validKeysP1 =
+        private static KeyCode[] validKeys =
         {
 
             //Gamepad Buttons
-            KeyCode.Joystick4Button0,
-            KeyCode.Joystick4Button1,
-            KeyCode.Joystick4Button2,
-            KeyCode.Joystick4Button3,
-            KeyCode.Joystick4Button4,
-            KeyCode.Joystick4Button5,
+            KeyCode.JoystickButton0,
+            KeyCode.JoystickButton1,
+            KeyCode.JoystickButton2,
+            KeyCode.JoystickButton3,
+            KeyCode.JoystickButton4,
+            KeyCode.JoystickButton5,
 
             //Keyboard
             KeyCode.A,
@@ -47,36 +47,25 @@ namespace Assets.Scripts
             KeyCode.UpArrow,
             KeyCode.DownArrow,
             KeyCode.RightArrow,
-             
 
 
-        };
-
-        private static KeyCode[] validKeysP2 =
-        {
-
-            //Gamepad Buttons
-            KeyCode.Joystick3Button0,
-            KeyCode.Joystick3Button1,
-            KeyCode.Joystick3Button2,
-            KeyCode.Joystick3Button3,
-            KeyCode.Joystick3Button4,
-            KeyCode.Joystick3Button5,
 
         };
-	
+
+
+
         // Use this for initialization
-        public void Start ()
+        public void Start()
         {
-	        CurrentKeySequence = new List<SequenceItem>();
+            CurrentKeySequence = new List<SequenceItem>();
             IsRecording = false;
             isPressingKey = false;
             startedRecodingTime = 0;
-            
+
 
             var gameControl = GetComponentInParent<GameControl>();
 
-            if(gameControl == null)
+            if (gameControl == null)
             {
                 Debug.LogError("Invalid GameControl Set");
                 return;
@@ -87,19 +76,16 @@ namespace Assets.Scripts
             player2 = gameControl.Player2;
 
         }
-	
+
         // Update is called once per frame
-        public void Update ()
+        public void Update()
         {
-            
+
 
             if (CurrentKeySequence.Count >= MaxSequenceSize) return;
 
-            if(player1.isActive)
-                ProcessPlayer1Input();
-            else
-                ProcessPlayer2Input();
-            
+            ProcessPlayerInput();
+
             if (IsImitating)
             {
 
@@ -107,35 +93,35 @@ namespace Assets.Scripts
                 {
                     Debug.LogError("Eeeeeeeehhhhh!!!!");
                 }
-                
+
             }
-            
+
         }
 
-        private void ProcessPlayer1Input()
+        private void ProcessPlayerInput()
         {
-            foreach (var key in validKeysP1)
+            foreach (var key in validKeys)
             {
                 if (Input.GetKeyUp(key))
                 {
-                    
-                    AddSequenceItem(SequenceItem.GetPlayer1Input(key));
+
+                    AddSequenceItem(SequenceItem.GetPlayerInput(key));
                     return;
                 }
             }
 
-            if (Input.GetAxis("DPad X") < 0.1 && 
-                Input.GetAxis("DPad X") > -0.1 && 
+            if (Input.GetAxis("DPad X") < 0.1 &&
+                Input.GetAxis("DPad X") > -0.1 &&
                 Input.GetAxis("DPad Y") < 0.1 &&
                 Input.GetAxis("DPad Y") > -0.1)
                 isPressingKey = false;
 
 
-            if (isPressingKey)  return; 
+            if (isPressingKey) return;
 
             if (Input.GetAxis("DPad X") > 0.8)
             {
-                
+
                 AddSequenceItem(InputItem.Right);
                 isPressingKey = true;
                 return;
@@ -162,73 +148,23 @@ namespace Assets.Scripts
                 return;
             }
 
-            if(CurrentKeySequence.Count> 0)
+            if (CurrentKeySequence.Count > 0)
                 ChangeDancer(CurrentKeySequence.Last().KeyPressed);
         }
 
-        private void ProcessPlayer2Input()
-        {
-            foreach (var key in validKeysP2)
-            {
-                if (Input.GetKeyUp(key))
-                {
-                    AddSequenceItem(SequenceItem.GetPlayer2Input(key));
-                    return;
-                }
-            }
 
-            if (Input.GetAxis("DPad X2") < 0.1 && 
-                Input.GetAxis("DPad X2") > -0.1 && 
-                Input.GetAxis("DPad Y2") < 0.1 &&
-                Input.GetAxis("DPad Y2") > -0.1)
-                isPressingKey = false;
-
-
-            if (isPressingKey)  return; 
-
-            if (Input.GetAxis("DPad X2") > 0.8)
-            {
-                
-                AddSequenceItem(InputItem.Right);
-                isPressingKey = true;
-                return;
-            }
-
-            if (Input.GetAxis("DPad X2") < -0.8)
-            {
-                isPressingKey = true;
-                AddSequenceItem(InputItem.Left);
-                return;
-            }
-
-            if (Input.GetAxis("DPad Y2") > 0.8)
-            {
-                isPressingKey = true;
-                AddSequenceItem(InputItem.Up);
-                return;
-            }
-
-            if (Input.GetAxis("DPad Y2") < -0.8)
-            {
-                isPressingKey = true;
-                AddSequenceItem(InputItem.Down);
-                return;
-            }
-
-            if(CurrentKeySequence.Count> 0)
-                ChangeDancer(CurrentKeySequence.Last().KeyPressed);
-        }
 
         private void AddSequenceItem(InputItem inputItem)
         {
-            
+
             var newKey = new SequenceItem(inputItem, Time.timeSinceLevelLoad - startedRecodingTime);
             CurrentKeySequence.Add(newKey);
             Debug.Log("Size>> " + CurrentKeySequence.Count + "  Max:  " + MaxSequenceSize);
 
-			if(CurrentKeySequence.Count == MaxSequenceSize) {
-				gmcontrl.SwitchPlayer ();
-			}
+            if (CurrentKeySequence.Count == MaxSequenceSize)
+            {
+                gmcontrl.SwitchPlayer();
+            }
         }
 
 
@@ -239,7 +175,7 @@ namespace Assets.Scripts
 
             {
                 case InputItem.None:
-                    if(player1.isActive)
+                    if (player1.isActive)
                         player1.SetSprite(0);
                     else
                         player2.SetSprite(0);

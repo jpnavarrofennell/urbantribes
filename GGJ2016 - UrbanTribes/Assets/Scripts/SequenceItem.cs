@@ -14,41 +14,26 @@ namespace Assets.Scripts
         }
 
 
-        public static InputItem GetPlayer2Input(KeyCode key)
-        {
-            switch (key)
-            {
-                case KeyCode.Joystick3Button2:
-                    return InputItem.X;
-                case KeyCode.Joystick3Button0:
-                    return InputItem.A;
-                case KeyCode.Joystick3Button3:
-                    return InputItem.Y;
-                case KeyCode.Joystick3Button1:
-                    return InputItem.B;
-            }
-            return InputItem.None;
-        }
 
-        public static InputItem GetPlayer1Input(KeyCode key)
+        public static InputItem GetPlayerInput(KeyCode key)
         {
             switch (key)
             {
                 case KeyCode.A:
-                case KeyCode.Joystick4Button2:
+                case KeyCode.JoystickButton2:
                 
                     return InputItem.X;
 
                 case KeyCode.S:
-                case KeyCode.Joystick4Button0:
+                case KeyCode.JoystickButton0:
                     return InputItem.A;
 
                 case KeyCode.W:
-                case KeyCode.Joystick4Button3:
+                case KeyCode.JoystickButton3:
                     return InputItem.Y;
 
                 case KeyCode.D:
-                case KeyCode.Joystick4Button1:
+                case KeyCode.JoystickButton1:
                     return InputItem.B;
 
                 case KeyCode.UpArrow:
