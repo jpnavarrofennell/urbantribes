@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,8 +23,10 @@ namespace Assets.Scripts
 
         private bool isPressingKey = false;
         private float startedRecodingTime;
-        
-        
+
+        private PlayerManager player1;
+        private PlayerManager player2;
+
 
         private static KeyCode[] validKeys =
         {
@@ -59,6 +63,18 @@ namespace Assets.Scripts
             isPressingKey = false;
             startedRecodingTime = 0;
             MaxSequenceSize = 10;
+
+            var gameControl = GetComponentInParent<GameControl>();
+
+            if(gameControl == null)
+            {
+                Debug.LogError("Invalid GameControl Set");
+                return;
+            }
+
+            player1 = gameControl.Player1;
+            player2 = gameControl.Player2;
+
         }
 	
         // Update is called once per frame
@@ -70,7 +86,7 @@ namespace Assets.Scripts
 
 
             ProcessInput();
-
+            
             if (IsImitating)
             {
 
@@ -134,6 +150,9 @@ namespace Assets.Scripts
                 AddSequenceItem(InputItem.Down);
                 return;
             }
+
+            if(CurrentKeySequence.Count> 0)
+                ChangeDancer(CurrentKeySequence.Last().KeyPressed);
         }
 
         private void AddSequenceItem(InputItem inputItem)
@@ -145,6 +164,43 @@ namespace Assets.Scripts
         }
 
 
+        private void ChangeDancer(InputItem key)
+        {
+
+            switch (key)
+
+            {
+                case InputItem.None:
+                    if(player1.isActive)
+                        player1.SetSprite(0);
+                    else
+                        player2.SetSprite(0);
+                    break;
+                case InputItem.Up:
+                    if (player1.isActive)
+                        player1.SetSprite(1);
+                    else
+                        player2.SetSprite(1);
+                    break;
+                case InputItem.Down:
+                    break;
+                case InputItem.Left:
+                    break;
+                case InputItem.Right:
+                    break;
+                case InputItem.A:
+                    break;
+                case InputItem.B:
+                    break;
+                case InputItem.X:
+                    break;
+                case InputItem.Y:
+                    break;
+
+            }
+        }
+
+
         public void StopRecording()
         {
             IsRecording = false;
@@ -152,7 +208,7 @@ namespace Assets.Scripts
             OldKeySequence = new List<SequenceItem>(CurrentKeySequence);
             CurrentKeySequence.Clear();
 
-            Debug.Log("Old>" + OldKeySequence.Count + "  -  new>"+ CurrentKeySequence.Count);
+            Debug.Log("Old>" + OldKeySequence.Count + "  -  new>" + CurrentKeySequence.Count);
         }
 
         public void StartRecording()
@@ -182,7 +238,7 @@ namespace Assets.Scripts
             var sequence = "";
             foreach (var key in CurrentKeySequence)
             {
-                sequence += key.KeyPressed.ToString() + " - " + key.TimePressed  + "\n" ;
+                sequence += key.KeyPressed.ToString() + " - " + key.TimePressed + "\n";
             }
 
             return sequence;
@@ -191,7 +247,6 @@ namespace Assets.Scripts
 
         public bool CompareSequence(List<SequenceItem> baseSequence, List<SequenceItem> resultSequence)
         {
-
             for (int i = 0; i < resultSequence.Count; i++)
             {
                 if (resultSequence[i].KeyPressed != baseSequence[i].KeyPressed) return false;
@@ -200,7 +255,5 @@ namespace Assets.Scripts
 
             return true;
         }
-
-
     }
 }

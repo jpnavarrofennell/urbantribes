@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine (Dancer());	
+		
 
         if(GameControl == null)
             Debug.LogError("Error, gameControl not set.");

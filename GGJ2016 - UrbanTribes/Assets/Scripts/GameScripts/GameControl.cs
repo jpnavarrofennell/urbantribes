@@ -7,6 +7,10 @@ public class GameControl : MonoBehaviour
     public int ActivePlayerNumber = 1;
     public int Score = 50;
 
+    public PlayerManager Player1;
+    public PlayerManager Player2;
+
+
     private SequenceRecorder sequenceRecorder;
 
 	// Use this for initialization
