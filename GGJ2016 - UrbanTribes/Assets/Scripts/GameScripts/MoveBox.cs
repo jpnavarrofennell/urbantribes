@@ -15,6 +15,14 @@ public class MoveBox : MonoBehaviour {
 	
 	}
 
+	public void GoLeft() {
+		box.SetInteger ("estado",0);
+	}
+
+	public void GoRight() {
+		box.SetInteger ("estado",2);
+	}
+
 	private IEnumerator AnimSwitch() {
 		int i = 0;
 		while (true) {

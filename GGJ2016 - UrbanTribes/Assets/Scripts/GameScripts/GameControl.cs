@@ -9,6 +9,7 @@ public class GameControl : MonoBehaviour
 
     public PlayerManager Player1;
     public PlayerManager Player2;
+	public MoveBox moveBox;
 
 
     private SequenceRecorder sequenceRecorder;
@@ -43,6 +44,15 @@ public class GameControl : MonoBehaviour
 
         Player1.isActive = (ActivePlayerNumber == 1);
         Player2.isActive = (ActivePlayerNumber == 2);
+
+
+		if (ActivePlayerNumber == 1) {
+			moveBox.GoLeft ();
+		} else {
+			moveBox.GoRight ();
+		}
+
+
     }
 
     public void StartStopRecording()
