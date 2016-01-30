@@ -249,6 +249,7 @@ namespace Assets.Scripts
             IsImitating = false;
             MaxSequenceSize += 1;
             startedRecodingTime = Time.timeSinceLevelLoad;
+            CurrentKeySequence = new List<SequenceItem>();
         }
 
         public void StartImitating()

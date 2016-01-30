@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SequenceToImages : MonoBehaviour
 {
 
-    public GameControl GlobalGameContnrol;
+    public GameControl GlobalGameControl;
 
     public Sprite ButtonA;
     public Sprite ButtonB;
@@ -30,7 +30,7 @@ public class SequenceToImages : MonoBehaviour
 	    {
 	        image.sprite = None;
 	    }
-	    sequenceRecorder = GlobalGameContnrol.GetComponent<SequenceRecorder>();
+	    sequenceRecorder = GlobalGameControl.GetComponent<SequenceRecorder>();
 
 
 	}
