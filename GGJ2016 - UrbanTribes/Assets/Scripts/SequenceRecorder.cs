@@ -67,6 +67,14 @@ namespace Assets.Scripts
                 }
             }
 
+            if (isImitating)
+            {
+                if (CompareSequence(OldKeySequence, CurrentKeySequence) == false)
+                {
+                    // Fin de round bajar puntos
+                }
+                
+            }
             
 
             DisplayText.text = KeySequenseToString();
@@ -112,17 +120,20 @@ namespace Assets.Scripts
         }
 
 
-        public int CompareSequence(List<SequenceItem> baseSequence, List<SequenceItem> resultSequence)
+        public bool CompareSequence(List<SequenceItem> baseSequence, List<SequenceItem> resultSequence)
         {
 
-            for (int i = 0; i < baseSequence.Count; i++)
-            {
+            if (baseSequence.Count > resultSequence.Count)
+                return false;
 
-                //baseSequence[i]
+
+            for (int i = 0; i < resultSequence.Count; i++)
+            {
+                if (resultSequence[i].KeyPressed != baseSequence[i].KeyPressed) return false;
             }
 
 
-            return 0;
+            return true;
         }
 
 
