@@ -7,7 +7,7 @@ public class MoveBox : MonoBehaviour {
 	public Animator box;
 	// Use this for initialization
 	void Start () {
-		StartCoroutine (AnimSwitch ());
+		
 	}
 	
 	// Update is called once per frame
