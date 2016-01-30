@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour {
 	
 	}
 
-	public void DisplayCredts(int scene) {
+	public void GoToScene(int scene) {
 		switch (scene) {
 		case 0:
 			SceneManager.LoadScene (creditsSceneName);
