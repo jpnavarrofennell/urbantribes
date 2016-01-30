@@ -38,8 +38,19 @@ public class SequenceToImages : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if(sequenceRecorder.CurrentKeySequence.Count ==0)
+            Reset();
+
 	    FillMoveList(sequenceRecorder.CurrentKeySequence);
 	}
+
+    public void Reset()
+    {
+        foreach (var image in InputSpace)
+        {
+            image.sprite = None;
+        }
+    }
 
 
     private void FillMoveList(List<SequenceItem> sequenceItems)
