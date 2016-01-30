@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerManager : MonoBehaviour {
 	// Número de personaje
 	public int playerNumber;
+	public bool isActive;
 
 	public Sprite[] danceMoves;
 	public SpriteRenderer dancerSprite;
@@ -44,6 +45,10 @@ public class PlayerManager : MonoBehaviour {
 	    }
 
 
+	}
+
+	public void SetSprite(int value) {
+		dancerSprite.sprite = danceMoves[value];
 	}
 
 	public void SetPlayerNumber (int value) {
