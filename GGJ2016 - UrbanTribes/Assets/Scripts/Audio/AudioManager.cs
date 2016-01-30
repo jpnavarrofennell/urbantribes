@@ -9,9 +9,15 @@ public class AudioManager : MonoBehaviour {
 	public static AudioManager instance;
 
 	void Start () {
-		DontDestroyOnLoad ();
+		
 
-		instance = this;
+		if (instance == null) {
+			instance = this;
+			DontDestroyOnLoad (this.gameObject);
+		} else {
+			Debug.Log("El Audio Manager ya existe");
+			Destroy (this.gameObject);
+		}
 
 		for (int i = 0; i < 2; i++) {
 			smooth [i] = 0.0f;	
@@ -25,13 +31,9 @@ public class AudioManager : MonoBehaviour {
 	void OnAudioFilterRead (float[] data, int channels)
 	{		
 		for (var i = 0; i < data.Length; i = i + channels) {
-			// the absolute value of every sample
 			float absInput = Mathf.Abs(data[i]);
-			// smoothening filter doing its thing
 			smooth[0] = ((0.01f * absInput) + (0.99f * smooth[1]));
-			// exaggerating the amplitude
 			amp = smooth[0]*7;
-			// it is a recursive filter, so it is doing its recursive thing
 			smooth[1] = smooth[0];
 		}
 	}
