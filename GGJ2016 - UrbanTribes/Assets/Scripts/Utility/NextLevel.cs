@@ -14,5 +14,6 @@ public class NextLevel : MonoBehaviour {
 
 	private IEnumerator NextLevelTimer () {
 		yield return new WaitForSeconds (timer);
+		SceneManager.LoadScene (nextLevelName);
 	}
 }
