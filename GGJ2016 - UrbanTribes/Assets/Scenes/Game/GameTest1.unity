@@ -2252,8 +2252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 504212cb78a500b48b6632d2cef5ba31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisplayText: {fileID: 0}
-  MaxSequenceSize: 18
+  MaxSequenceSize: 3
   CoolDownInSeconds: 0.2
   IsRecording: 0
   IsImitating: 0
