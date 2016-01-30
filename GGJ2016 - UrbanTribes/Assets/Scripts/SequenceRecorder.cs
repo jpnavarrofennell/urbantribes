@@ -26,12 +26,28 @@ namespace Assets.Scripts
 
         private static KeyCode[] validKeys =
         {
+
+            //Gamepad Buttons
             KeyCode.Joystick1Button0,
             KeyCode.Joystick1Button1,
             KeyCode.Joystick1Button2,
             KeyCode.Joystick1Button3,
             KeyCode.Joystick1Button4,
-            KeyCode.Joystick1Button5
+            KeyCode.Joystick1Button5,
+           
+
+
+            //Keyboard
+            KeyCode.A,
+            KeyCode.W,
+            KeyCode.S,
+            KeyCode.D,
+            KeyCode.LeftArrow,
+            KeyCode.UpArrow,
+            KeyCode.DownArrow,
+            KeyCode.RightArrow,
+             
+
 
         };
 	
@@ -53,16 +69,7 @@ namespace Assets.Scripts
             if (CurrentKeySequence.Count >= MaxSequenceSize) return;
 
 
-            foreach (var key in validKeys)
-            {
-                if (Input.GetKeyUp(key))
-                {
-                    isPressingKey = true;
-                    var newKey = new SequenceItem(key, Time.timeSinceLevelLoad - startedRecodingTime);
-                    CurrentKeySequence.Add(newKey);
-                    Debug.Log("Size>> "+CurrentKeySequence.Count   + "  Max:  " + MaxSequenceSize);
-                }
-            }
+            ProcessInput();
 
             if (IsImitating)
             {
@@ -78,6 +85,65 @@ namespace Assets.Scripts
             DisplayText.text = KeySequenseToString();
         
         }
+
+        private void ProcessInput()
+        {
+            foreach (var key in validKeys)
+            {
+                if (Input.GetKeyUp(key))
+                {
+                    AddSequenceItem(SequenceItem.KeyToInputItem(key));
+                    return;
+                }
+            }
+
+            if (Input.GetAxis("DPad X") < 0.1 && 
+                Input.GetAxis("DPad X") > -0.1 && 
+                Input.GetAxis("DPad Y") < 0.1 &&
+                Input.GetAxis("DPad Y") > -0.1)
+                isPressingKey = false;
+
+
+            if (isPressingKey)  return; 
+
+            if (Input.GetAxis("DPad X") > 0.8)
+            {
+                
+                AddSequenceItem(InputItem.Right);
+                isPressingKey = true;
+                return;
+            }
+
+            if (Input.GetAxis("DPad X") < -0.8)
+            {
+                isPressingKey = true;
+                AddSequenceItem(InputItem.Left);
+                return;
+            }
+
+            if (Input.GetAxis("DPad Y") > 0.8)
+            {
+                isPressingKey = true;
+                AddSequenceItem(InputItem.Up);
+                return;
+            }
+
+            if (Input.GetAxis("DPad Y") < -0.8)
+            {
+                isPressingKey = true;
+                AddSequenceItem(InputItem.Down);
+                return;
+            }
+        }
+
+        private void AddSequenceItem(InputItem inputItem)
+        {
+            
+            var newKey = new SequenceItem(inputItem, Time.timeSinceLevelLoad - startedRecodingTime);
+            CurrentKeySequence.Add(newKey);
+            Debug.Log("Size>> " + CurrentKeySequence.Count + "  Max:  " + MaxSequenceSize);
+        }
+
 
         public void StopRecording()
         {
@@ -134,5 +200,7 @@ namespace Assets.Scripts
 
             return true;
         }
+
+
     }
 }
