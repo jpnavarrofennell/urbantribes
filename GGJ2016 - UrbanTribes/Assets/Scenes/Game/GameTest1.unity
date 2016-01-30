@@ -2292,6 +2292,7 @@ MonoBehaviour:
   CoolDownInSeconds: 0.2
   IsRecording: 0
   IsImitating: 0
+  gmcontrl: {fileID: 1696204783}
 --- !u!114 &1696204783
 MonoBehaviour:
   m_ObjectHideFlags: 0

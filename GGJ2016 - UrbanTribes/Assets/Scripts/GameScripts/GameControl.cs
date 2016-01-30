@@ -20,6 +20,7 @@ public class GameControl : MonoBehaviour
 	    ActivePlayerNumber = 1;
 	    Player1.isActive = true;
 	    sequenceRecorder = GetComponent<SequenceRecorder>();
+		sequenceRecorder.StartRecording ();
 	}
 	
 	// Update is called once per frame
@@ -48,8 +49,12 @@ public class GameControl : MonoBehaviour
 
 		if (ActivePlayerNumber == 1) {
 			moveBox.GoLeft ();
+			sequenceRecorder.StopRecording ();
+			sequenceRecorder.StartImitating ();
 		} else {
 			moveBox.GoRight ();
+			sequenceRecorder.StopRecording ();
+			sequenceRecorder.StartImitating ();
 		}
 
 

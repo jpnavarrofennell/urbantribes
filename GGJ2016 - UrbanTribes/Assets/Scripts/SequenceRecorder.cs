@@ -24,6 +24,8 @@ namespace Assets.Scripts
         private PlayerManager player1;
         private PlayerManager player2;
 
+		public GameControl gmcontrl;
+
 
         private static KeyCode[] validKeysP1 =
         {
@@ -223,6 +225,10 @@ namespace Assets.Scripts
             var newKey = new SequenceItem(inputItem, Time.timeSinceLevelLoad - startedRecodingTime);
             CurrentKeySequence.Add(newKey);
             Debug.Log("Size>> " + CurrentKeySequence.Count + "  Max:  " + MaxSequenceSize);
+
+			if(CurrentKeySequence.Count == MaxSequenceSize) {
+				gmcontrl.SwitchPlayer ();
+			}
         }
 
 
