@@ -8,12 +8,18 @@ public class PlayerManager : MonoBehaviour {
 	public Sprite[] danceMoves;
 	public SpriteRenderer dancerSprite;
 
+    public GameControl GameControl;
+
 	private int _currentSprite = 0;
+
 
 
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (Dancer());	
+
+        if(GameControl == null)
+            Debug.LogError("Error, gameControl not set.");
 	}
 	
 	// Update is called once per frame
@@ -25,6 +31,19 @@ public class PlayerManager : MonoBehaviour {
 		if(Input.GetKeyDown("s")) {}
 
 		if(Input.GetKeyDown("d")) {}
+
+	    if (Input.GetKeyUp(KeyCode.Joystick1Button7))
+	    {
+	        GameControl.SwitchPlayer();
+            Debug.Log("SwitchPlayer");
+	    }
+	    if (Input.GetKeyUp(KeyCode.Joystick1Button6))
+	    {
+            Debug.Log("Start/Stop Recording");
+	        GameControl.StartStopRecording();
+	    }
+
+
 	}
 
 	public void SetPlayerNumber (int value) {

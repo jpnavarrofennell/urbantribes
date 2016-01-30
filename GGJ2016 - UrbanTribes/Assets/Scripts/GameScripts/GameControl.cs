@@ -1,18 +1,40 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+using Assets.Scripts;
 
-public class GameControl : MonoBehaviour {
+public class GameControl : MonoBehaviour
+{
+
+    public int ActivePlayerNumber = 1;
+    public int Score = 50;
+
+    private SequenceRecorder sequenceRecorder;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start ()
+	{
+	    ActivePlayerNumber = 1;
+	    sequenceRecorder = GetComponent<SequenceRecorder>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
+
+
+    public void SwitchPlayer()
+    {
+        ActivePlayerNumber = ActivePlayerNumber == 1 ? 2 : 1;
+    }
+
+    public void StartStopRecording()
+    {
+        if(sequenceRecorder.IsRecording == false)
+            sequenceRecorder.StartRecording();
+        else
+            sequenceRecorder.StopRecording();
+    }
+
 
 
 }

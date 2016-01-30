@@ -15,8 +15,8 @@ namespace Assets.Scripts
         public float CoolDownInSeconds = 0.2f;
 
 
-        private bool isRecording = false;
-        private bool isImitating = false;
+        public bool IsRecording = false;
+        public bool IsImitating = false;
 
 
         private bool isPressingKey = false;
@@ -31,9 +31,7 @@ namespace Assets.Scripts
             KeyCode.Joystick1Button2,
             KeyCode.Joystick1Button3,
             KeyCode.Joystick1Button4,
-            KeyCode.Joystick1Button5,
-            KeyCode.Joystick1Button6,
-            KeyCode.Joystick1Button7
+            KeyCode.Joystick1Button5
 
         };
 	
@@ -41,7 +39,7 @@ namespace Assets.Scripts
         public void Start ()
         {
 	        CurrentKeySequence = new List<SequenceItem>();
-            isRecording = false;
+            IsRecording = false;
             isPressingKey = false;
             startedRecodingTime = 0;
             MaxSequenceSize = 10;
@@ -50,8 +48,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         public void Update ()
         {
-
-            //if(isRecording == false) return;
+            
 
             if (CurrentKeySequence.Count >= MaxSequenceSize) return;
 
@@ -67,11 +64,12 @@ namespace Assets.Scripts
                 }
             }
 
-            if (isImitating)
+            if (IsImitating)
             {
+
                 if (CompareSequence(OldKeySequence, CurrentKeySequence) == false)
                 {
-                    // Fin de round bajar puntos
+                    Debug.LogError("Eeeeeeeehhhhh!!!!");
                 }
                 
             }
@@ -83,21 +81,26 @@ namespace Assets.Scripts
 
         public void StopRecording()
         {
-            isRecording = false;
-            
+            IsRecording = false;
+            IsImitating = true;
+            OldKeySequence = new List<SequenceItem>(CurrentKeySequence);
+            CurrentKeySequence.Clear();
+
+            Debug.Log("Old>" + OldKeySequence.Count + "  -  new>"+ CurrentKeySequence.Count);
         }
 
         public void StartRecording()
         {
-            isRecording = true;
-            isImitating = false;
+            IsRecording = true;
+            IsImitating = false;
+            MaxSequenceSize += 1;
             startedRecodingTime = Time.timeSinceLevelLoad;
         }
 
         public void StartImitating()
         {
-            isImitating = true;
-            isRecording = false;
+            IsImitating = true;
+            IsRecording = false;
             startedRecodingTime = Time.timeSinceLevelLoad;
         }
 
@@ -123,10 +126,6 @@ namespace Assets.Scripts
         public bool CompareSequence(List<SequenceItem> baseSequence, List<SequenceItem> resultSequence)
         {
 
-            if (baseSequence.Count > resultSequence.Count)
-                return false;
-
-
             for (int i = 0; i < resultSequence.Count; i++)
             {
                 if (resultSequence[i].KeyPressed != baseSequence[i].KeyPressed) return false;
@@ -135,9 +134,5 @@ namespace Assets.Scripts
 
             return true;
         }
-
-
-
     }
-
 }
