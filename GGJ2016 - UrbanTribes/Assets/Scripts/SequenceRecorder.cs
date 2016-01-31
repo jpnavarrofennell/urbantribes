@@ -91,7 +91,9 @@ namespace Assets.Scripts
 
                 if (CompareSequence(OldKeySequence, CurrentKeySequence) == false)
                 {
-                    Debug.LogError("Eeeeeeeehhhhh!!!!");
+                    Debug.LogError("LUser fails");
+                    gmcontrl.SwitchPlayer();
+                    
                 }
 
             }
