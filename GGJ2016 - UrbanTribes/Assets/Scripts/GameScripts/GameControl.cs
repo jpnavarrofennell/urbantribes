@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using System.Collections;
 using Assets.Scripts;
 
 public class GameControl : MonoBehaviour
 {
-
+	
     public int ActivePlayerNumber = 1;
     public int Score = 50;
 
@@ -11,6 +12,10 @@ public class GameControl : MonoBehaviour
     public PlayerManager Player2;
 	public MoveBox moveBox;
 
+	public int player1Points = 0;
+	public int player2Points = 0;
+
+	public GuiConttroller guiCon;
 
     private SequenceRecorder sequenceRecorder;
 
@@ -26,7 +31,10 @@ public class GameControl : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetKeyUp(KeyCode.F5))
+		guiCon.LeftPoint.text = player1Points.ToString();
+		guiCon.RightPoint.text = player2Points.ToString();
+
+		if (Input.GetKeyUp(KeyCode.F5))
         {
             SwitchPlayer();
             Debug.Log("SwitchPlayer>> "  + ActivePlayerNumber);
@@ -49,16 +57,27 @@ public class GameControl : MonoBehaviour
 
 		if (ActivePlayerNumber == 1) {
 			moveBox.GoLeft ();
+			StartCoroutine(Reset(1));
 			sequenceRecorder.StopRecording ();
 			sequenceRecorder.StartImitating ();
 		} else {
 			moveBox.GoRight ();
+			StartCoroutine(Reset(2));
 			sequenceRecorder.StopRecording ();
 			sequenceRecorder.StartImitating ();
 		}
 
 
     }
+
+	private IEnumerator Reset(int value) { 
+		yield return new WaitForSeconds (0.1f);
+		if (value == 1) {
+			Player2.SetSprite (0);
+		} else {
+			Player1.SetSprite (0);
+		}
+	}
 
     public void StartStopRecording()
     {

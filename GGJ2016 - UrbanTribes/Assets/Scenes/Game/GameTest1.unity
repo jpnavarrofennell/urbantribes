@@ -2309,6 +2309,9 @@ MonoBehaviour:
   Player1: {fileID: 124316051}
   Player2: {fileID: 657943327}
   moveBox: {fileID: 1696204785}
+  player1Points: 0
+  player2Points: 0
+  guiCon: {fileID: 1696204786}
 --- !u!4 &1696204784
 Transform:
   m_ObjectHideFlags: 0
