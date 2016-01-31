@@ -72,14 +72,15 @@ namespace Assets.Scripts
 
             ProcessPlayerInput();
 
-			if (IsImitating) {
+			if (IsImitating)
+            {
 				information.text = "Imitate";
 				if (CompareSequence (OldKeySequence, CurrentKeySequence) == false) {
-					//Debug.LogError("LUser fails");
-
-					gmcontrl.SwitchPlayer (); 
+					StartRecording(); 
 				}
-			} else if(IsRecording) {
+			}
+            if (IsRecording)
+            {
 				//CurrentKeySequence = new List<SequenceItem>();
 				information.text = "Challenge Player " + ((gmcontrl.ActivePlayerNumber == 1)? "2" : "1");
 
@@ -153,10 +154,6 @@ namespace Assets.Scripts
 
             Debug.Log("Size>> " + CurrentKeySequence.Count + "  Max:  " + MaxSequenceSize);
 
-            if (CurrentKeySequence.Count == MaxSequenceSize)
-            {
-				gmcontrl.SwitchPlayer(); 
-            }
         }
 
         private void ChangeDancer(InputItem key)
