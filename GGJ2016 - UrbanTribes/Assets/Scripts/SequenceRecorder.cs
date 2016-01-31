@@ -151,9 +151,6 @@ namespace Assets.Scripts
 
             var newKey = new SequenceItem(inputItem, Time.timeSinceLevelLoad - startedRecodingTime);
             CurrentKeySequence.Add(newKey);
-
-			Debug.Log("Size>> " + CurrentKeySequence.Count + "  Max:  " + MaxSequenceSize);
-
         }
 
         private void ChangeDancer(InputItem key)
@@ -231,6 +228,7 @@ namespace Assets.Scripts
             IsRecording = false;
             IsImitating = true;
             OldKeySequence = new List<SequenceItem>(CurrentKeySequence);
+            
             CurrentKeySequence.Clear();
             Debug.Log("Old>" + OldKeySequence.Count + "  -  new>" + CurrentKeySequence.Count);
         }

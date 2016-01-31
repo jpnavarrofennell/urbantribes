@@ -42,6 +42,7 @@ public class GameControl : MonoBehaviour
         if (sequenceRecorder.CurrentKeySequence.Count >= sequenceRecorder.MaxSequenceSize &&
             sequenceRecorder.IsRecording)
         {
+            StartCoroutine(sequenceRecorder.Delay());
             SwitchPlayer();
         }
     }
@@ -49,6 +50,7 @@ public class GameControl : MonoBehaviour
 
     public void SwitchPlayer()
     {
+        Debug.Log("Switching.....");
 		StartCoroutine (sequenceRecorder.Delay ());
 
 		Debug.Log("Switching Players");
@@ -77,7 +79,7 @@ public class GameControl : MonoBehaviour
         {
             sequenceRecorder.StartRecording();
         }
-
+        Debug.Log("Done.....");
     }
 
     private IEnumerator Reset(int value)
