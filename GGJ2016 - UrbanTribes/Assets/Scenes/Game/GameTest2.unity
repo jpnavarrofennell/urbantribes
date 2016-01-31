@@ -109,8 +109,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 124316049}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 604.31, y: 636.05, z: 0}
-  m_LocalScale: {x: 2.6135542, y: 2.613556, z: 2.613556}
+  m_LocalPosition: {x: 1190.9, y: 1244.28, z: 0}
+  m_LocalScale: {x: 5.1215773, y: 5.1215796, z: 5.1215796}
   m_Children:
   - {fileID: 1957028871}
   m_Father: {fileID: 0}
@@ -129,21 +129,21 @@ MonoBehaviour:
   playerNumber: 1
   isActive: 0
   danceMoves:
-  - {fileID: 21300022, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300000, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300002, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300004, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300006, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300008, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300010, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300012, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300014, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300016, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
+  - {fileID: 21300000, guid: a184785e85b968949a89e5138b705dac, type: 3}
+  - {fileID: 21300000, guid: 0a6c1186de0290a42a852af695fc124c, type: 3}
+  - {fileID: 21300000, guid: a358a4efe8833c54d8613b81dff4927c, type: 3}
+  - {fileID: 21300000, guid: d97cfdf54ff23f44e96c9f7dcfce4521, type: 3}
+  - {fileID: 21300000, guid: 1260042d64fa7db438a2d8c3e7c0c594, type: 3}
+  - {fileID: 21300000, guid: 4424b7204b414554299afeeb41bb137a, type: 3}
+  - {fileID: 21300000, guid: d6c312883daba8c4281dee3d043c715d, type: 3}
+  - {fileID: 21300000, guid: 7b3709b4a9e5c0449a4c0f07d2fef35f, type: 3}
+  - {fileID: 21300000, guid: d6c312883daba8c4281dee3d043c715d, type: 3}
+  - {fileID: 21300000, guid: 3328fb9159b46df4c941ad505ed35492, type: 3}
   - {fileID: 21300018, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
   - {fileID: 21300020, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
   - {fileID: 21300024, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300026, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300030, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
+  - {fileID: 21300000, guid: d4ab50f0c05230e41bb7df495b7da0ae, type: 3}
+  - {fileID: 21300000, guid: 0c8e981666decb145aff8a673375976a, type: 3}
   dancerSprite: {fileID: 1957028872}
   GameControl: {fileID: 1696204783}
   whoosh: {fileID: 124316052}
@@ -671,7 +671,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300022, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 36e5c4cc9c4ec704589dc10368ffd119, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1006,21 +1006,21 @@ MonoBehaviour:
   playerNumber: 2
   isActive: 0
   danceMoves:
-  - {fileID: 21300022, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300000, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300002, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300004, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300006, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300008, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300010, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300012, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300014, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
+  - {fileID: 21300000, guid: 36e5c4cc9c4ec704589dc10368ffd119, type: 3}
+  - {fileID: 21300000, guid: 454b16e7e3daffd4d96c31cd84f1306f, type: 3}
+  - {fileID: 21300000, guid: d159af7f6ae5e3d46aee0224517a57f6, type: 3}
+  - {fileID: 21300000, guid: 8e1873d192973af4eac4405c053ab8f3, type: 3}
+  - {fileID: 21300000, guid: 68834a65ddcb6394aa122d409513abae, type: 3}
+  - {fileID: 21300000, guid: 48d85e8cc1ec5e945b4614f9ddac8234, type: 3}
+  - {fileID: 21300000, guid: a6c043b30f1227946bd960c67787f88c, type: 3}
+  - {fileID: 21300000, guid: a4e31e1a46d5f5541b8e7614e7dd388a, type: 3}
+  - {fileID: 21300000, guid: 56b3ab2a0799e8748b1b3d736f68b3b2, type: 3}
   - {fileID: 21300016, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
   - {fileID: 21300018, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
   - {fileID: 21300020, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
   - {fileID: 21300024, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300026, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
-  - {fileID: 21300030, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
+  - {fileID: 21300000, guid: 3850b08b5713f404bbce34a30f4e094e, type: 3}
+  - {fileID: 21300000, guid: ccab50f92e7f46b44aaeee9b982678e4, type: 3}
   dancerSprite: {fileID: 358263733}
   GameControl: {fileID: 1696204783}
   whoosh: {fileID: 657943329}
@@ -1031,8 +1031,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 657943326}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -613.08, y: 636.05, z: 0}
-  m_LocalScale: {x: -2.6493385, y: 2.613556, z: 2.613556}
+  m_LocalPosition: {x: -1379.28, y: 1421.03, z: 0}
+  m_LocalScale: {x: -5.927267, y: 5.847214, z: 5.847214}
   m_Children:
   - {fileID: 358263734}
   m_Father: {fileID: 0}
@@ -1178,6 +1178,64 @@ RectTransform:
   m_AnchoredPosition: {x: -59, y: 132.99998}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &780636104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 780636105}
+  - 212: {fileID: 780636106}
+  m_Layer: 0
+  m_Name: Alley_FINAL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &780636105
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 780636104}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 11.97}
+  m_LocalScale: {x: 5, y: 5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1182411089}
+  m_RootOrder: 0
+--- !u!212 &780636106
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 780636104}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 6a7c89b8fc62beb4ea44cf6267d96f9e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1 &839629603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1615,9 +1673,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 780636105}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
 --- !u!82 &1182411090
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1680,7 +1739,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -2703,7 +2762,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!114 &1696204785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3290,7 +3349,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300022, guid: de7d2c618cf014e8ab854911bc1bf954, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a184785e85b968949a89e5138b705dac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
