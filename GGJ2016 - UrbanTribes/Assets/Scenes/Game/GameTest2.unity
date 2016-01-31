@@ -2748,7 +2748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2387605095997476b8bc11a477e0cd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLeft: 100
+  timeLeft: 60
+  gmeCtrl: {fileID: 0}
   text: {fileID: 1709512375}
 --- !u!82 &1696204788
 AudioSource:

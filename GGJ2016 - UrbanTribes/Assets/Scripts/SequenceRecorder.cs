@@ -276,11 +276,16 @@ namespace Assets.Scripts
 				if (resultSequence [i].KeyPressed != baseSequence [i].KeyPressed) {
 					// Aqui se equivoco
 					guiCon.FailedImitation(gmcontrl.ActivePlayerNumber);
-					if (player1.isActive)
-						player1.SetSprite(14);
-					else
-						player2.SetSprite(14);
+					if (player1.isActive) {
+						player1.SetSprite (14);
+						gmcontrl.player2Points++;
+					} else { 
+						player2.SetSprite (14);
+						gmcontrl.player1Points++;
+					}
 					StartCoroutine (Delay ());
+
+
 					return false;
 				}
             }
