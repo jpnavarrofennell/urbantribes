@@ -14,6 +14,7 @@ namespace Assets.Scripts
         public float CoolDownInSeconds = 0.2f;
         public bool IsRecording = false;
         public bool IsImitating = false;
+		public GuiConttroller guiCon;
 
         private bool isPressingKey = false;
         private float startedRecodingTime;
@@ -252,12 +253,17 @@ namespace Assets.Scripts
 				if(baseSequence.Count-1 == i) {
 					if (resultSequence [i].KeyPressed == baseSequence [i].KeyPressed) {
 						StartRecording ();
+						// Aqui fue perfecto
+						guiCon.ComboSucceded(gmcontrl.ActivePlayerNumber);
 						return true;
 					}
 				}
 
-				if (resultSequence[i].KeyPressed != baseSequence[i].KeyPressed) 
+				if (resultSequence [i].KeyPressed != baseSequence [i].KeyPressed) {
+					// Aqui se equivoco
+					guiCon.FailedImitation(gmcontrl.ActivePlayerNumber);
 					return false;
+				}
             }
             return true;
         }

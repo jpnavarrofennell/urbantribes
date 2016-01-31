@@ -14,6 +14,9 @@ public class GuiConttroller : MonoBehaviour {
 	public Text LeftPoint;
 	public Text RightPoint;
 
+	public AudioSource audioFail;
+	public AudioSource audioWin;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -26,25 +29,30 @@ public class GuiConttroller : MonoBehaviour {
 
 	public void FailedImitation(int value) {
 		Sequence fadeCosito = DOTween.Sequence ();
-		if (value == 0) {
+		if (value == 1) {
 			fadeCosito.Insert (0, LeftFail.DOFade(1f,0f));
 			fadeCosito.Insert (1, LeftFail.DOFade(0f,1f));
 		}
-		if (value == 1) {
+		if (value == 2) {
 			fadeCosito.Insert (0, RightFail.DOFade(1f,0f));
 			fadeCosito.Insert (1, RightFail.DOFade(0f,1f));
 		}
+
+		audioFail.Play ();
 	}
 
 	public void ComboSucceded(int value) {
 		Sequence fadeCosito = DOTween.Sequence ();
-		if (value == 0) {
-			fadeCosito.Insert (0, LeftCombo.DOFade(1f,0f));
-			fadeCosito.Insert (1, LeftCombo.DOFade(0f,1f));
-		}
 		if (value == 1) {
 			fadeCosito.Insert (0, LeftCombo.DOFade(1f,0f));
 			fadeCosito.Insert (1, LeftCombo.DOFade(0f,1f));
 		}
+		if (value == 2) {
+			fadeCosito.Insert (0, RightCombo.DOFade(1f,0f));
+			fadeCosito.Insert (1, RightCombo.DOFade(0f,1f));
+		}
+		audioWin.Play ();
 	}
+
+
 }
