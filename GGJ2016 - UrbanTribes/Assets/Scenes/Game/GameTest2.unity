@@ -453,8 +453,8 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 232.3, y: 62}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 198, y: 7.499977}
+  m_SizeDelta: {x: 160, y: 139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &278977439
 MonoBehaviour:
@@ -468,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.13235295, b: 0.13235295, a: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -477,18 +477,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 96c01e4a23a2d4a068ed7c100349916b, type: 3}
-    m_FontSize: 14
-    m_FontStyle: 0
+    m_FontSize: 25
+    m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 2
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Fail!
+  m_Text: You got served!
 --- !u!222 &278977440
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2591,8 +2591,8 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -212.99992, y: 62}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -212.99994, y: 7.500061}
+  m_SizeDelta: {x: 160, y: 139}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1552208474
 MonoBehaviour:
@@ -2615,20 +2615,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 96c01e4a23a2d4a068ed7c100349916b, type: 3}
-    m_FontSize: 14
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Fail!
-
-'
+  m_Text: You got served!
 --- !u!222 &1552208475
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2737,6 +2735,7 @@ MonoBehaviour:
   RightPoint: {fileID: 1762089385}
   audioFail: {fileID: 1696204788}
   audioWin: {fileID: 1696204789}
+  GameControl: {fileID: 1696204783}
 --- !u!114 &1696204787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2749,7 +2748,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLeft: 60
-  gmeCtrl: {fileID: 0}
+  gmeCtrl: {fileID: 1696204783}
   text: {fileID: 1709512375}
 --- !u!82 &1696204788
 AudioSource:

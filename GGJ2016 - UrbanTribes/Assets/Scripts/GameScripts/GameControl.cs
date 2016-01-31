@@ -104,6 +104,12 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    public void ResetDancersPoses()
+    {
+        Player1.SetSprite(0);
+        Player2.SetSprite(0);
+    }
+
 
 
 }

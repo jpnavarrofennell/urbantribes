@@ -15,7 +15,7 @@ namespace Assets.Scripts
         public float CoolDownInSeconds = 0.2f;
         public bool IsRecording = false;
         public bool IsImitating = false;
-		public GuiConttroller guiCon;
+        public GuiConttroller guiCon;
 
         private bool isPressingKey = false;
         private float startedRecodingTime;
@@ -23,8 +23,8 @@ namespace Assets.Scripts
         private PlayerManager player2;
         public GameControl gmcontrl;
 
-		public Text information;
-		private bool updateAtive = true;
+        public Text information;
+        private bool updateAtive = true;
 
         private static KeyCode[] validKeys =
         {
@@ -70,29 +70,31 @@ namespace Assets.Scripts
         // Update is called once per frame
         public void Update()
         {
-			if (updateAtive) {
-				ProcessPlayerInput();
+            if (updateAtive)
+            {
+                ProcessPlayerInput();
 
-				if (IsImitating)
-				{
-					information.text = "Imitate";
-					if (CompareSequence (OldKeySequence, CurrentKeySequence) == false) {
-						StartRecording(); 
-					}
-				}
-				if (IsRecording)
-				{
-					//CurrentKeySequence = new List<SequenceItem>();
-					information.text = "Challenge Player " + ((gmcontrl.ActivePlayerNumber == 1)? "2" : "1");
+                if (IsImitating)
+                {
+                    information.text = "Imitate";
+                    if (CompareSequence(OldKeySequence, CurrentKeySequence) == false)
+                    {
+                        StartRecording();
+                    }
+                }
+                if (IsRecording)
+                {
+                    //CurrentKeySequence = new List<SequenceItem>();
+                    information.text = "Challenge Player " + ((gmcontrl.ActivePlayerNumber == 1) ? "2" : "1");
 
-				}
-			}            
+                }
+            }
         }
 
         private void ProcessPlayerInput()
         {
             // Control de teclas validas
-			foreach (var key in validKeys)
+            foreach (var key in validKeys)
             {
                 if (Input.GetKeyUp(key))
                 {
@@ -101,17 +103,17 @@ namespace Assets.Scripts
                 }
             }
 
-			// DPad se matiene apretado
+            // DPad se matiene apretado
             if (Input.GetAxis("DPad X") < 0.1 &&
                 Input.GetAxis("DPad X") > -0.1 &&
                 Input.GetAxis("DPad Y") < 0.1 &&
                 Input.GetAxis("DPad Y") > -0.1)
                 isPressingKey = false;
 
-			// Detiene el input si el input esta fijo
+            // Detiene el input si el input esta fijo
             if (isPressingKey) return;
 
-			// Input Derecho
+            // Input Derecho
             if (Input.GetAxis("DPad X") > 0.8)
             {
                 AddSequenceItem(InputItem.Right);
@@ -163,58 +165,58 @@ namespace Assets.Scripts
                     else
                         player2.SetSprite(0);
                     break;
-			case InputItem.Up:
-					
+                case InputItem.Up:
+
                     if (player1.isActive)
                         player1.SetSprite(1);
                     else
                         player2.SetSprite(1);
                     break;
-				case InputItem.Down:
-					
-					if (player1.isActive)
+                case InputItem.Down:
+
+                    if (player1.isActive)
                         player1.SetSprite(2);
                     else
                         player2.SetSprite(2);
                     break;
-				case InputItem.Left:
-					
-					if (player1.isActive)
+                case InputItem.Left:
+
+                    if (player1.isActive)
                         player1.SetSprite(3);
                     else
                         player2.SetSprite(3);
                     break;
-				case InputItem.Right:
-					
-					if (player1.isActive)
+                case InputItem.Right:
+
+                    if (player1.isActive)
                         player1.SetSprite(4);
                     else
                         player2.SetSprite(4);
                     break;
-				case InputItem.A:
-					
-					if (player1.isActive)
+                case InputItem.A:
+
+                    if (player1.isActive)
                         player1.SetSprite(5);
                     else
                         player2.SetSprite(5);
                     break;
-				case InputItem.B:
-					
-					if (player1.isActive)
+                case InputItem.B:
+
+                    if (player1.isActive)
                         player1.SetSprite(6);
                     else
                         player2.SetSprite(6);
                     break;
-				case InputItem.X:
-					
-					if (player1.isActive)
+                case InputItem.X:
+
+                    if (player1.isActive)
                         player1.SetSprite(7);
                     else
                         player2.SetSprite(7);
                     break;
-				case InputItem.Y:
-					
-					if (player1.isActive)
+                case InputItem.Y:
+
+                    if (player1.isActive)
                         player1.SetSprite(8);
                     else
                         player2.SetSprite(8);
@@ -228,7 +230,7 @@ namespace Assets.Scripts
             IsRecording = false;
             IsImitating = true;
             OldKeySequence = new List<SequenceItem>(CurrentKeySequence);
-            
+
             CurrentKeySequence.Clear();
             Debug.Log("Old>" + OldKeySequence.Count + "  -  new>" + CurrentKeySequence.Count);
         }
@@ -259,44 +261,50 @@ namespace Assets.Scripts
         {
             for (int i = 0; i < resultSequence.Count; i++)
             {
-				if(baseSequence.Count-1 == i) {
-					if (resultSequence [i].KeyPressed == baseSequence [i].KeyPressed) {
-						StartRecording ();
-						// Aqui fue perfecto
-						guiCon.ComboSucceded(gmcontrl.ActivePlayerNumber);
-						if (player1.isActive)
-							player1.SetSprite(13);
-						else
-							player2.SetSprite(13);
-						StartCoroutine (Delay ());
-						return true;
-					}
-				}
+                if (baseSequence.Count - 1 == i)
+                {
+                    if (resultSequence[i].KeyPressed == baseSequence[i].KeyPressed)
+                    {
+                        StartRecording();
+                        // Aqui fue perfecto
+                        guiCon.ComboSucceded(gmcontrl.ActivePlayerNumber);
+                        if (player1.isActive)
+                            player1.SetSprite(13);
+                        else
+                            player2.SetSprite(13);
+                        StartCoroutine(Delay());
+                        return true;
+                    }
+                }
 
-				if (resultSequence [i].KeyPressed != baseSequence [i].KeyPressed) {
-					// Aqui se equivoco
-					guiCon.FailedImitation(gmcontrl.ActivePlayerNumber);
-					if (player1.isActive) {
-						player1.SetSprite (14);
-						gmcontrl.player2Points++;
-					} else { 
-						player2.SetSprite (14);
-						gmcontrl.player1Points++;
-					}
-					StartCoroutine (Delay ());
+                if (resultSequence[i].KeyPressed != baseSequence[i].KeyPressed)
+                {
+                    // Aqui se equivoco
+                    guiCon.FailedImitation(gmcontrl.ActivePlayerNumber);
+                    if (player1.isActive)
+                    {
+                        player1.SetSprite(14);
+                        gmcontrl.player2Points++;
+                    }
+                    else {
+                        player2.SetSprite(14);
+                        gmcontrl.player1Points++;
+                    }
+                    StartCoroutine(Delay());
 
 
-					return false;
-				}
+                    return false;
+                }
             }
             return true;
         }
 
-		public IEnumerator Delay() {
-			updateAtive = false;
-			yield return new WaitForSeconds (1f);
-			updateAtive = true;
-		}
+        public IEnumerator Delay()
+        {
+            updateAtive = false;
+            yield return new WaitForSeconds(1f);
+            updateAtive = true;
+        }
     }
 
 

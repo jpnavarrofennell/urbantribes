@@ -11,6 +11,13 @@ public class CountDown : MonoBehaviour
 
 	public Text text;
 
+    public void Start()
+    {
+        if(gmeCtrl == null)
+            Debug.LogError("Invalid Game Control on CountDown GameObject");
+    }
+
+
 	void Update()
 	{
 		timeLeft -= Time.deltaTime;
