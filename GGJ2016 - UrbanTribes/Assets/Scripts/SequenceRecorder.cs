@@ -228,23 +228,26 @@ namespace Assets.Scripts
             IsRecording = false;
             IsImitating = true;
             OldKeySequence = new List<SequenceItem>(CurrentKeySequence);
-
-            CurrentKeySequence.Clear();
+            
+            
             Debug.Log("Old>" + OldKeySequence.Count + "  -  new>" + CurrentKeySequence.Count);
         }
 
         public void StartRecording()
-        {           
-
+        {
+            
             IsRecording = true;
             IsImitating = false;
             MaxSequenceSize += 1;
             startedRecodingTime = Time.timeSinceLevelLoad;
             CurrentKeySequence = new List<SequenceItem>();
+            
         }
 
         public void StartImitating()
         {
+            
+            CurrentKeySequence.Clear();
             IsImitating = true;
             IsRecording = false;
             startedRecodingTime = Time.timeSinceLevelLoad;
@@ -264,7 +267,7 @@ namespace Assets.Scripts
                 {
                     if (resultSequence[i].KeyPressed == baseSequence[i].KeyPressed)
                     {
-                        Delay(3f);
+                        
                         StartRecording();
                         // Aqui fue perfecto
                         guiCon.ComboSucceded(gmcontrl.ActivePlayerNumber);

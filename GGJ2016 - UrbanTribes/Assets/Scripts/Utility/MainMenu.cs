@@ -14,8 +14,16 @@ public class MainMenu : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+    {
+	    if (Input.GetKeyDown(KeyCode.JoystickButton0))
+	    {
+	        GoToScene(2);
+	    }
+        if (Input.GetKeyDown(KeyCode.JoystickButton3))
+	    {
+	        GoToScene(0);
+	    }
 	}
 
 	public void GoToScene(int scene) {
