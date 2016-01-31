@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class GuiConttroller : MonoBehaviour {
-	public Text CurrentAction;
-
+	
 	public Text LeftCombo;
 	public Text RightCombo;
 
@@ -22,5 +21,9 @@ public class GuiConttroller : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void FailedImitation() {
+		
 	}
 }
