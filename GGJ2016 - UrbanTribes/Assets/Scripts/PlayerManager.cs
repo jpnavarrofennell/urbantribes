@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour {
 
     public GameControl GameControl;
 
+	public AudioSource whoosh;
+
 	private int _currentSprite = 0;
 
 
@@ -34,6 +36,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void SetSprite(int value) {
 		dancerSprite.sprite = danceMoves[value];
+		whoosh.Play ();
 	}
 
 	public void SetPlayerNumber (int value) {

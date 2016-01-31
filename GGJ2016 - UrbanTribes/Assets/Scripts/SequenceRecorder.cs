@@ -166,50 +166,58 @@ namespace Assets.Scripts
                     else
                         player2.SetSprite(0);
                     break;
-                case InputItem.Up:
+			case InputItem.Up:
+					
                     if (player1.isActive)
                         player1.SetSprite(1);
                     else
                         player2.SetSprite(1);
                     break;
-                case InputItem.Down:
-                    if (player1.isActive)
+				case InputItem.Down:
+					
+					if (player1.isActive)
                         player1.SetSprite(2);
                     else
                         player2.SetSprite(2);
                     break;
-                case InputItem.Left:
-                    if (player1.isActive)
+				case InputItem.Left:
+					
+					if (player1.isActive)
                         player1.SetSprite(3);
                     else
                         player2.SetSprite(3);
                     break;
-                case InputItem.Right:
-                    if (player1.isActive)
+				case InputItem.Right:
+					
+					if (player1.isActive)
                         player1.SetSprite(4);
                     else
                         player2.SetSprite(4);
                     break;
-                case InputItem.A:
-                    if (player1.isActive)
+				case InputItem.A:
+					
+					if (player1.isActive)
                         player1.SetSprite(5);
                     else
                         player2.SetSprite(5);
                     break;
-                case InputItem.B:
-                    if (player1.isActive)
+				case InputItem.B:
+					
+					if (player1.isActive)
                         player1.SetSprite(6);
                     else
                         player2.SetSprite(6);
                     break;
-                case InputItem.X:
-                    if (player1.isActive)
+				case InputItem.X:
+					
+					if (player1.isActive)
                         player1.SetSprite(7);
                     else
                         player2.SetSprite(7);
                     break;
-                case InputItem.Y:
-                    if (player1.isActive)
+				case InputItem.Y:
+					
+					if (player1.isActive)
                         player1.SetSprite(8);
                     else
                         player2.SetSprite(8);
@@ -281,7 +289,7 @@ namespace Assets.Scripts
             return true;
         }
 
-		private IEnumerator Delay() {
+		public IEnumerator Delay() {
 			updateAtive = false;
 			yield return new WaitForSeconds (1f);
 			updateAtive = true;

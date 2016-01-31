@@ -49,8 +49,9 @@ public class GameControl : MonoBehaviour
 
     public void SwitchPlayer()
     {
+		StartCoroutine (sequenceRecorder.Delay ());
 
-        Debug.Log("Switching Players");
+		Debug.Log("Switching Players");
         ActivePlayerNumber = ActivePlayerNumber == 1 ? 2 : 1;
 
         Player1.isActive = (ActivePlayerNumber == 1);
