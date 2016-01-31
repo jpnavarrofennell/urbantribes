@@ -36,7 +36,7 @@ public class GameControl : MonoBehaviour
 
 		if (Input.GetKeyUp(KeyCode.F5))
         {
-            SwitchPlayer();
+            //SwitchPlayer();
             Debug.Log("SwitchPlayer>> "  + ActivePlayerNumber);
         }
         if (Input.GetKeyUp(KeyCode.JoystickButton6))
@@ -47,27 +47,24 @@ public class GameControl : MonoBehaviour
     }
 
 
-    public void SwitchPlayer()
+	public void SwitchPlayer()
     {
-        ActivePlayerNumber = ActivePlayerNumber == 1 ? 2 : 1;
+		ActivePlayerNumber = ActivePlayerNumber == 1 ? 2 : 1;
 
-        Player1.isActive = (ActivePlayerNumber == 1);
+		Player1.isActive = (ActivePlayerNumber == 1);
         Player2.isActive = (ActivePlayerNumber == 2);
-
 
 		if (ActivePlayerNumber == 1) {
 			moveBox.GoLeft ();
-			StartCoroutine(Reset(1));
-			sequenceRecorder.StopRecording ();
-			sequenceRecorder.StartImitating ();
+			StartCoroutine(Reset(ActivePlayerNumber));
+			//sequenceRecorder.StopRecording ();
+			//sequenceRecorder.StartImitating ();
 		} else {
 			moveBox.GoRight ();
-			StartCoroutine(Reset(2));
-			sequenceRecorder.StopRecording ();
-			sequenceRecorder.StartImitating ();
+			StartCoroutine(Reset(ActivePlayerNumber));
+			//sequenceRecorder.StopRecording ();
+			//sequenceRecorder.StartImitating ();
 		}
-
-
     }
 
 	private IEnumerator Reset(int value) { 

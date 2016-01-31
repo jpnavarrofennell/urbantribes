@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -9,23 +10,18 @@ namespace Assets.Scripts
 
         public List<SequenceItem> CurrentKeySequence;
         public List<SequenceItem> OldKeySequence;
-
         public int MaxSequenceSize;
         public float CoolDownInSeconds = 0.2f;
-
-
         public bool IsRecording = false;
         public bool IsImitating = false;
 
-
         private bool isPressingKey = false;
         private float startedRecodingTime;
-
         private PlayerManager player1;
         private PlayerManager player2;
-
         public GameControl gmcontrl;
 
+		public Text information;
 
         private static KeyCode[] validKeys =
         {
@@ -47,9 +43,6 @@ namespace Assets.Scripts
             KeyCode.UpArrow,
             KeyCode.DownArrow,
             KeyCode.RightArrow,
-
-
-
         };
 
 
@@ -61,69 +54,63 @@ namespace Assets.Scripts
             IsRecording = false;
             isPressingKey = false;
             startedRecodingTime = 0;
-
-
             var gameControl = GetComponentInParent<GameControl>();
-
             if (gameControl == null)
             {
                 Debug.LogError("Invalid GameControl Set");
                 return;
             }
-
-
             player1 = gameControl.Player1;
             player2 = gameControl.Player2;
-
         }
 
         // Update is called once per frame
         public void Update()
         {
-
-
-            if (CurrentKeySequence.Count >= MaxSequenceSize) return;
+            if (CurrentKeySequence.Count >= MaxSequenceSize) 
+				return;
 
             ProcessPlayerInput();
 
-            if (IsImitating)
-            {
+			if (IsImitating) {
+				information.text = "Imitate";
+				if (CompareSequence (OldKeySequence, CurrentKeySequence) == false) {
+					//Debug.LogError("LUser fails");
 
-                if (CompareSequence(OldKeySequence, CurrentKeySequence) == false)
-                {
-                    Debug.LogError("LUser fails");
-                    gmcontrl.SwitchPlayer();
-                    
-                }
+					gmcontrl.SwitchPlayer (); 
+				}
+			} else if(IsRecording) {
+				//CurrentKeySequence = new List<SequenceItem>();
+				information.text = "Challenge Player " + ((gmcontrl.ActivePlayerNumber == 1)? "2" : "1");
 
-            }
-
+			}
         }
 
         private void ProcessPlayerInput()
         {
-            foreach (var key in validKeys)
+            // Control de teclas validas
+			foreach (var key in validKeys)
             {
                 if (Input.GetKeyUp(key))
                 {
-
                     AddSequenceItem(SequenceItem.GetPlayerInput(key));
                     return;
                 }
             }
 
+			// DPad se matiene apretado
             if (Input.GetAxis("DPad X") < 0.1 &&
                 Input.GetAxis("DPad X") > -0.1 &&
                 Input.GetAxis("DPad Y") < 0.1 &&
                 Input.GetAxis("DPad Y") > -0.1)
                 isPressingKey = false;
 
-
+			// Detiene el input si el input esta fijo
             if (isPressingKey) return;
 
+			// Input Derecho
             if (Input.GetAxis("DPad X") > 0.8)
             {
-
                 AddSequenceItem(InputItem.Right);
                 isPressingKey = true;
                 return;
@@ -161,20 +148,20 @@ namespace Assets.Scripts
 
             var newKey = new SequenceItem(inputItem, Time.timeSinceLevelLoad - startedRecodingTime);
             CurrentKeySequence.Add(newKey);
+
+			information.text = "Challenge Him";
+
             Debug.Log("Size>> " + CurrentKeySequence.Count + "  Max:  " + MaxSequenceSize);
 
             if (CurrentKeySequence.Count == MaxSequenceSize)
             {
-                gmcontrl.SwitchPlayer();
+				gmcontrl.SwitchPlayer(); 
             }
         }
 
-
         private void ChangeDancer(InputItem key)
         {
-
             switch (key)
-
             {
                 case InputItem.None:
                     if (player1.isActive)
@@ -230,7 +217,6 @@ namespace Assets.Scripts
                     else
                         player2.SetSprite(8);
                     break;
-
             }
         }
 
@@ -241,7 +227,6 @@ namespace Assets.Scripts
             IsImitating = true;
             OldKeySequence = new List<SequenceItem>(CurrentKeySequence);
             CurrentKeySequence.Clear();
-
             Debug.Log("Old>" + OldKeySequence.Count + "  -  new>" + CurrentKeySequence.Count);
         }
 
@@ -271,10 +256,16 @@ namespace Assets.Scripts
         {
             for (int i = 0; i < resultSequence.Count; i++)
             {
-                if (resultSequence[i].KeyPressed != baseSequence[i].KeyPressed) return false;
+				if(resultSequence.Count == i) {
+					if (resultSequence [i].KeyPressed != baseSequence [i].KeyPressed) {
+						StartRecording ();
+						return true;
+					}
+				}
+
+				if (resultSequence[i].KeyPressed != baseSequence[i].KeyPressed) 
+					return false;
             }
-
-
             return true;
         }
     }
