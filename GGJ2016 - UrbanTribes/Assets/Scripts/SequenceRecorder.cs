@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace Assets.Scripts
 {
@@ -23,6 +24,7 @@ namespace Assets.Scripts
         public GameControl gmcontrl;
 
 		public Text information;
+		private bool updateAtive = true;
 
         private static KeyCode[] validKeys =
         {
@@ -68,22 +70,23 @@ namespace Assets.Scripts
         // Update is called once per frame
         public void Update()
         {
+			if (updateAtive) {
+				ProcessPlayerInput();
 
-            ProcessPlayerInput();
-
-			if (IsImitating)
-            {
-				information.text = "Imitate";
-				if (CompareSequence (OldKeySequence, CurrentKeySequence) == false) {
-					StartRecording(); 
+				if (IsImitating)
+				{
+					information.text = "Imitate";
+					if (CompareSequence (OldKeySequence, CurrentKeySequence) == false) {
+						StartRecording(); 
+					}
 				}
-			}
-            if (IsRecording)
-            {
-				//CurrentKeySequence = new List<SequenceItem>();
-				information.text = "Challenge Player " + ((gmcontrl.ActivePlayerNumber == 1)? "2" : "1");
+				if (IsRecording)
+				{
+					//CurrentKeySequence = new List<SequenceItem>();
+					information.text = "Challenge Player " + ((gmcontrl.ActivePlayerNumber == 1)? "2" : "1");
 
-			}
+				}
+			}            
         }
 
         private void ProcessPlayerInput()
@@ -255,6 +258,11 @@ namespace Assets.Scripts
 						StartRecording ();
 						// Aqui fue perfecto
 						guiCon.ComboSucceded(gmcontrl.ActivePlayerNumber);
+						if (player1.isActive)
+							player1.SetSprite(13);
+						else
+							player2.SetSprite(13);
+						StartCoroutine (Delay ());
 						return true;
 					}
 				}
@@ -262,10 +270,23 @@ namespace Assets.Scripts
 				if (resultSequence [i].KeyPressed != baseSequence [i].KeyPressed) {
 					// Aqui se equivoco
 					guiCon.FailedImitation(gmcontrl.ActivePlayerNumber);
+					if (player1.isActive)
+						player1.SetSprite(14);
+					else
+						player2.SetSprite(14);
+					StartCoroutine (Delay ());
 					return false;
 				}
             }
             return true;
         }
+
+		private IEnumerator Delay() {
+			updateAtive = false;
+			yield return new WaitForSeconds (1f);
+			updateAtive = true;
+		}
     }
+
+
 }
