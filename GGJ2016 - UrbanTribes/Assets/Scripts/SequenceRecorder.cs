@@ -146,8 +146,6 @@ namespace Assets.Scripts
                 ChangeDancer(CurrentKeySequence.Last().KeyPressed);
         }
 
-
-
         private void AddSequenceItem(InputItem inputItem)
         {
 
