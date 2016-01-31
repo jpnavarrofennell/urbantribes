@@ -67,8 +67,6 @@ namespace Assets.Scripts
         // Update is called once per frame
         public void Update()
         {
-            if (CurrentKeySequence.Count >= MaxSequenceSize) 
-				return;
 
             ProcessPlayerInput();
 
@@ -150,9 +148,7 @@ namespace Assets.Scripts
             var newKey = new SequenceItem(inputItem, Time.timeSinceLevelLoad - startedRecodingTime);
             CurrentKeySequence.Add(newKey);
 
-			information.text = "Challenge Him";
-
-            Debug.Log("Size>> " + CurrentKeySequence.Count + "  Max:  " + MaxSequenceSize);
+			Debug.Log("Size>> " + CurrentKeySequence.Count + "  Max:  " + MaxSequenceSize);
 
         }
 
@@ -253,8 +249,8 @@ namespace Assets.Scripts
         {
             for (int i = 0; i < resultSequence.Count; i++)
             {
-				if(resultSequence.Count == i) {
-					if (resultSequence [i].KeyPressed != baseSequence [i].KeyPressed) {
+				if(baseSequence.Count-1 == i) {
+					if (resultSequence [i].KeyPressed == baseSequence [i].KeyPressed) {
 						StartRecording ();
 						return true;
 					}

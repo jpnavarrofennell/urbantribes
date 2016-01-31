@@ -39,7 +39,11 @@ public class GameControl : MonoBehaviour
             //SwitchPlayer();
             Debug.Log("SwitchPlayer>> " + ActivePlayerNumber);
         }
-
+        if (sequenceRecorder.CurrentKeySequence.Count >= sequenceRecorder.MaxSequenceSize &&
+            sequenceRecorder.IsRecording)
+        {
+            SwitchPlayer();
+        }
     }
 
 
