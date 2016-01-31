@@ -73,10 +73,10 @@ namespace Assets.Scripts
             if (updateAtive)
             {
                 ProcessPlayerInput();
-
+                var enemyPlayer = ((gmcontrl.ActivePlayerNumber == 1) ? "2" : "1");
                 if (IsImitating)
                 {
-                    information.text = "Imitate";
+                    information.text = "Player"+ enemyPlayer + ", pfff that's EASY!";
                     if (CompareSequence(OldKeySequence, CurrentKeySequence) == false)
                     {
                         StartRecording();
@@ -84,8 +84,8 @@ namespace Assets.Scripts
                 }
                 if (IsRecording)
                 {
-                    //CurrentKeySequence = new List<SequenceItem>();
-                    information.text = "Challenge Player " + ((gmcontrl.ActivePlayerNumber == 1) ? "2" : "1");
+                    
+                    information.text = "Player" + gmcontrl.ActivePlayerNumber + " show me what you got!";
 
                 }
             }
@@ -234,7 +234,8 @@ namespace Assets.Scripts
         }
 
         public void StartRecording()
-        {
+        {           
+
             IsRecording = true;
             IsImitating = false;
             MaxSequenceSize += 1;
@@ -263,6 +264,7 @@ namespace Assets.Scripts
                 {
                     if (resultSequence[i].KeyPressed == baseSequence[i].KeyPressed)
                     {
+                        Delay(3f);
                         StartRecording();
                         // Aqui fue perfecto
                         guiCon.ComboSucceded(gmcontrl.ActivePlayerNumber);
@@ -270,7 +272,7 @@ namespace Assets.Scripts
                             player1.SetSprite(13);
                         else
                             player2.SetSprite(13);
-                        StartCoroutine(Delay());
+                        StartCoroutine(Delay(1f));
                         return true;
                     }
                 }
@@ -288,7 +290,7 @@ namespace Assets.Scripts
                         player2.SetSprite(14);
                         gmcontrl.player1Points++;
                     }
-                    StartCoroutine(Delay());
+                    StartCoroutine(Delay(1f));
 
 
                     return false;
@@ -297,10 +299,10 @@ namespace Assets.Scripts
             return true;
         }
 
-        public IEnumerator Delay()
+        public IEnumerator Delay(float timeToDelay)
         {
             updateAtive = false;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(timeToDelay);
             updateAtive = true;
         }
     }

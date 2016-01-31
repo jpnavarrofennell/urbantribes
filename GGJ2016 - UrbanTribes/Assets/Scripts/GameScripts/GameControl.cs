@@ -34,15 +34,10 @@ public class GameControl : MonoBehaviour
         guiCon.LeftPoint.text = player1Points.ToString();
         guiCon.RightPoint.text = player2Points.ToString();
 
-        if (Input.GetKeyUp(KeyCode.F5))
-        {
-            //SwitchPlayer();
-            Debug.Log("SwitchPlayer>> " + ActivePlayerNumber);
-        }
         if (sequenceRecorder.CurrentKeySequence.Count >= sequenceRecorder.MaxSequenceSize &&
             sequenceRecorder.IsRecording)
         {
-            StartCoroutine(sequenceRecorder.Delay());
+            StartCoroutine(sequenceRecorder.Delay(1f));
             SwitchPlayer();
         }
     }
@@ -51,7 +46,7 @@ public class GameControl : MonoBehaviour
     public void SwitchPlayer()
     {
         Debug.Log("Switching.....");
-		StartCoroutine (sequenceRecorder.Delay ());
+		StartCoroutine (sequenceRecorder.Delay (5f));
 
 		Debug.Log("Switching Players");
         ActivePlayerNumber = ActivePlayerNumber == 1 ? 2 : 1;

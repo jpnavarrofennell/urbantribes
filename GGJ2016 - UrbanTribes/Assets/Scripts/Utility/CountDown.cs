@@ -24,14 +24,20 @@ public class CountDown : MonoBehaviour
 		text.text = Mathf.Round(timeLeft).ToString();
 		if(timeLeft < 0)
 		{
-			if(gmeCtrl.player1Points > gmeCtrl.player2Points) {
+			if(gmeCtrl.player1Points > gmeCtrl.player2Points)
+            {
+                AudioManager.instance.GetComponent<AudioSource>().Stop();
 				SceneManager.LoadScene ("P1Win");
 			}
-			else if (gmeCtrl.player1Points < gmeCtrl.player2Points) {
-				SceneManager.LoadScene ("P2Win");
+			else if (gmeCtrl.player1Points < gmeCtrl.player2Points)
+            {
+                AudioManager.instance.GetComponent<AudioSource>().Stop();
+                SceneManager.LoadScene ("P2Win");
 			}
-			else {
-				SceneManager.LoadScene ("Draw");
+			else
+            {
+                AudioManager.instance.GetComponent<AudioSource>().Stop();
+                SceneManager.LoadScene ("Draw");
 			}
 		}
 	}
