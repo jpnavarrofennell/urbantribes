@@ -4,17 +4,17 @@ using System.Collections;
 
 public class CountDown : MonoBehaviour
 {
-	float timeLeft = 300.0f;
+	public float timeLeft = 300.0f;
 
 	public Text text;
 
 	void Update()
 	{
 		timeLeft -= Time.deltaTime;
-		text.text = "Time Left:" + Mathf.Round(timeLeft);
+		text.text = Mathf.Round(timeLeft).ToString();
 		if(timeLeft < 0)
 		{
-			Application.LoadLevel("gameOver");
+			//Application.LoadLevel("gameOver");
 		}
 	}
 }
